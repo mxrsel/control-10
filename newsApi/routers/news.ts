@@ -25,6 +25,9 @@ newsRouter.get('/:id', async(req, res) => {
 
 newsRouter.post('/', imagesUpload.single('newsImage'), async(req, res) => {
 try{
+    if (!req.body.newsName || !req.body.newsDescription) {
+        res.status(400).send({error: 'Enter fields of name and description!'})
+    }
     const newNews: NewsWithoutId = {
         newsName: req.body.newsName,
         newsDescription: req.body.newsDescription,
