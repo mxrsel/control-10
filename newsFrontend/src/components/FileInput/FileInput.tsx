@@ -1,4 +1,6 @@
 import React from "react";
+import Grid from '@mui/material/Grid2';
+import { Button, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
 
 interface  Props {
@@ -37,21 +39,19 @@ const FileInput: React.FC<Props> = ({name, label, onGetFile}) => {
                 onChange={onFileChange}
                 ref={inputRef}
             />
-            <div className='container align-items-center'>
-                <div>
-                    <label>
-                        {label}
-                    <textarea
+            <Grid container spacing={2} direction="row" alignItems="center">
+                <Grid>
+                    <TextField
                         disabled
+                        label={label}
                         value={fileName}
                         onClick={activateInput}
                     />
-                    </label>
-                </div>
-                <div>
-                    <button className='btn btn-dark' onClick={activateInput}>Browse</button>
-                </div>
-            </div>
+                </Grid>
+                <Grid>
+                    <Button variant="contained" onClick={activateInput}>Browse</Button>
+                </Grid>
+            </Grid>
         </>
     );
 };

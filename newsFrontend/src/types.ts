@@ -2,7 +2,7 @@ export interface News {
     id: string;
     newsName: string;
     newsDescription: string;
-    newsImage: File | null;
+    newsImage: string | null;
     datetime: string
 }
 

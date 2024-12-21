@@ -1,23 +1,23 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {useAppDispatch} from "../../app/hooks.ts";
-import {deleteNews} from "../../store/thunks/newsThunk.ts";
+import {apiUrl} from "../../constants.ts";
 
 interface Props {
     id: string
     newsName: string;
-    newsImage: string | null | undefined;
+    newsImage?: string | null
     datetime: string
+    onDelete: (id: string) => void
 }
 
-const NewsItem: React.FC<Props> = ({id, newsName, newsImage, datetime}) => {
-const dispatch = useAppDispatch();
+const NewsItem: React.FC<Props> = ({id, newsName, newsImage, datetime, onDelete}) => {
+
 
     return (
         <div>
-            <div className='card'>
+            <div className='card mt-5 '>
                 <div className='card-img'>
-                    {newsImage && <img src={newsImage} alt='image'/>}
+                    {newsImage && <img src={`${apiUrl}/${newsImage}`} alt='image'/>}
                 </div>
                 <div className='card-header'>
                     {newsName}
@@ -26,7 +26,8 @@ const dispatch = useAppDispatch();
                     {datetime}
                 </div>
                 <NavLink to='/fullNews'>Read Full Post...</NavLink>
-                <button onClick={() => dispatch(deleteNews(id))}>Delete</button>
+
+                <button className='btn btn-dark' onClick={() => onDelete(id)}>Delete</button>
             </div>
         </div>
     );

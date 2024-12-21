@@ -32,7 +32,7 @@ const NewsForm: React.FC<Props> = ({onSubmit}) => {
     const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
         const {name, files} = e.target;
 
-        if(files) {
+        if(files && files[0]) {
             setAddNews((prevState) => ({
                 ...prevState,
                 [name]: files[0] || null
@@ -76,9 +76,8 @@ const NewsForm: React.FC<Props> = ({onSubmit}) => {
                     onGetFile={handleChangeFile}/>
             </div>
 
-            <div>
-                <button className='btn btn-dark'>Create</button>
-            </div>
+                <button type='submit' className='btn btn-dark'>Create</button>
+
         </form>
     );
 };

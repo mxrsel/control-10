@@ -9,11 +9,14 @@ const fs = require('fs');
 const app = express();
 const port = 8000;
 
+app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
+
+
 app.use('/news', newsRouter);
 app.use('/comments', commentsRouter);
-app.use(cors());
-app.use(express.static('public'));
+
 
 const run = async() => {
     if (fs.existsSync('./db.json')) {
