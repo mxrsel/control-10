@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import {fileDb} from "./fileDb";
 import {newsRouter} from "./routers/news";
+import {commentsRouter} from "./routers/comments";
 
 const fs = require('fs');
 
@@ -10,6 +11,7 @@ const port = 8000;
 
 app.use(express.json());
 app.use('/news', newsRouter);
+app.use('/comments', commentsRouter);
 app.use(cors());
 app.use(express.static('public'));
 
