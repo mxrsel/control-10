@@ -14,6 +14,15 @@ newsRouter.get('/', async(req, res) => {
    }
 })
 
+newsRouter.get('/:id', async(req, res) => {
+     try {
+         const news = await fileDb.getEntityById('news', req.params.id);
+         res.status(200).send(news)
+     } catch(e) {
+         console.error(e)
+     }
+})
+
 newsRouter.post('/', imagesUpload.single('newsImage'), async(req, res) => {
 try{
     const newNews: NewsWithoutId = {
@@ -28,4 +37,13 @@ try{
 } catch(e) {
     console.error(e)
 }
+})
+
+newsRouter.delete('/:id', async(req, res) => {
+    try {
+        await fileDb.deleteEntity('news', req.params.id);
+        res.status(200).send('news deleted successfully.');
+    }catch(e) {
+        console.error(e)
+    }
 })
