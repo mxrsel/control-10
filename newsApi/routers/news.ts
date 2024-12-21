@@ -5,7 +5,7 @@ import {imagesUpload} from "../multer";
 
 export const newsRouter = express.Router();
 
-newsRouter.get('/', async(req, res) => {
+newsRouter.get('/', async(_req, res) => {
    try {
        const newsData = await fileDb.getEntity();
        res.status(200).send(newsData.news)

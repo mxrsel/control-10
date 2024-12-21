@@ -39,17 +39,20 @@ export const fileDb = {
     },
 
     async getEntityById(entity: 'comments' | 'news', id: string) {
-        const entitys = data[entity];
-        const findEntityById = entitys.find((entity) => entity.id === id);
+        const entities = data[entity];
+        const findEntityById = entities.find((entity) => entity.id === id);
         if(!findEntityById) console.error('Entity not found!');
         return findEntityById
     },
 
     async deleteEntity(entity: 'comments' | 'news', id: string) {
-        const entitys = data[entity];
-        const deleteEntity = entitys.findIndex((entity) => entity.id === id);
+        const entities = data[entity];
+        const deleteEntity = entities.findIndex((entity) => entity.id === id);
         if(deleteEntity === -1) console.log("Current object doesn't exist")
-        data[entity].splice(deleteEntity, 0);
+        if(entity === 'news') {
+            data.comments.filter((comment) => comment.news_id !== id);
+        }
+        entities.splice(deleteEntity, 1);
         await this.save()
     },
 
