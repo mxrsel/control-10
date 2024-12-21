@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {News} from "../../types.ts";
-import {fetchNews} from "../thunks/newsThunk.ts";
+import {createNews, fetchNews} from "../thunks/newsThunk.ts";
 
 interface Props {
     news: News[];
@@ -34,6 +34,23 @@ const newsSlice = createSlice({
             )
             .addCase(
                 fetchNews.rejected, (state) => {
+                    state.isLoading = false
+                    state.isError = true
+                }
+            )
+            .addCase(
+                createNews.pending, (state) => {
+                    state.isLoading = true
+                    state.isError = false
+                }
+            )
+            .addCase(
+                createNews.fulfilled, (state) => {
+                    state.isLoading = false
+                }
+            )
+            .addCase(
+            createNews.rejected, (state) => {
                     state.isLoading = false
                     state.isError = true
                 }
