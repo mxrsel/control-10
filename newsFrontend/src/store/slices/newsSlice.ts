@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {News} from "../types.ts";
+import {News} from "../../types.ts";
 
 interface Props {
     news: News[];
