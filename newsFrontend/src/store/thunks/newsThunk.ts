@@ -5,7 +5,7 @@ import {News, NewsMutation} from "../../types.ts";
 export const fetchNews = createAsyncThunk<News[], void>(
     'news/fetchNews',
     async() => {
-        const response = await axiosApi<News[]>('/news.json');
+        const response = await axiosApi<News[]>('/news');
         return response.data || [];
     }
 );
@@ -30,7 +30,7 @@ export const createNews = createAsyncThunk<void, NewsMutation>(
 export const getNewsById = createAsyncThunk<News, void>(
     'news/getNewsById',
     async(id) => {
-        const response =  await axiosApi.get<News>(`/news/${id}.json`);
+        const response =  await axiosApi.get<News>(`/news/${id}`);
         return response.data;
     }
 )
@@ -38,6 +38,6 @@ export const getNewsById = createAsyncThunk<News, void>(
 export const deleteNews = createAsyncThunk<void, string>(
     'news/deleteNews',
     async(id) => {
-        await axiosApi.delete(`/news/${id}.json`);
+        await axiosApi.delete(`/news/${id}`);
     }
 )

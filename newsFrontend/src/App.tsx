@@ -1,9 +1,19 @@
+import {Route, Routes} from "react-router-dom";
+import NewNews from "./containers/NewNews/NewNews.tsx";
+import Toolbar from "./containers/Toolbar/Toolbar.tsx";
 
 const App = () => {
     return (
-        <div>
+        <>
+            <header>
+                <Toolbar/>
+            </header>
 
-        </div>
+                <Routes>
+                    <Route path='/newNews' element={<NewNews />} />
+                </Routes>
+
+        </>
     );
 };
 

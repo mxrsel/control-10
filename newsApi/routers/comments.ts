@@ -13,15 +13,6 @@ commentsRouter.get('/', async(_req, res) => {
     }
 })
 
-commentsRouter.get('/:id', async(req, res) => {
-    try {
-        const comments = await fileDb.getEntityById('comments', req.params.id);
-        res.status(200).send(comments);
-    } catch(e) {
-        console.error(e)
-    }
-})
-
 commentsRouter.post('/', async(req, res) => {
    try {
         if(!req.body.commentText || !req.body.news_id) {

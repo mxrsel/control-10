@@ -12,3 +12,6 @@ export interface NewsMutation {
     newsImage: File | null;
     datetime: string
 }
+
+
+export type ApiNews = Omit<NewsMutation, 'id'>;
