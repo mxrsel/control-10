@@ -26,3 +26,11 @@ export const createNews = createAsyncThunk<void, NewsMutation>(
         await axiosApi.post('/news', formData);
     }
 )
+
+export const getNewsById = createAsyncThunk<News, void>(
+    'news/getNewsById',
+    async(id) => {
+        const response =  await axiosApi.get<News>(`/news/${id}.json`);
+        return response.data;
+    }
+)
