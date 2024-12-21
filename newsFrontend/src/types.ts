@@ -13,5 +13,12 @@ export interface NewsMutation {
     datetime: string
 }
 
+export interface Comments {
+    id: string;
+    news_id: string;
+    author: string;
+    commentText: string;
+}
+
 
 export type ApiNews = Omit<NewsMutation, 'id'>;

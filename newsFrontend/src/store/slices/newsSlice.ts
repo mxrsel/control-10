@@ -4,12 +4,14 @@ import {createNews, deleteNews, fetchNews, getNewsById} from "../thunks/newsThun
 
 interface Props {
     news: News[];
+    oneNews: News | null;
     isLoading: boolean | string;
     isError: boolean;
 }
 
 const initialState: Props = {
     news: [],
+    oneNews: null,
     isLoading: false,
     isError: false,
 }
@@ -64,7 +66,7 @@ const newsSlice = createSlice({
             .addCase(
                 getNewsById.fulfilled, (state, action: PayloadAction<News>) => {
                     state.isLoading = false
-                    state.news = [action.payload]
+                    state.oneNews = action.payload
                 }
             )
             .addCase(

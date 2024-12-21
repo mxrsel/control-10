@@ -3,6 +3,7 @@ import NewsItem from "./NewsItem.tsx";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {deleteNews, fetchNews} from "../../store/thunks/newsThunk.ts";
 import Spinner from "../Spinner/Spinner.tsx";
+import {NavLink} from "react-router-dom";
 
 const INews: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +21,9 @@ const INews: React.FC = () => {
     return (
         <div>
             {loading && <Spinner/>}
+            <NavLink className='btn btn-dark' to='/news/newNews'>Add New News</NavLink>
             {news.map((oneNews) => (
+
                 <NewsItem
                     key={oneNews.id}
                     id={oneNews.id}
@@ -29,6 +32,7 @@ const INews: React.FC = () => {
                     datetime={oneNews.datetime}
                     onDelete={handleDelete}
                 />
+
             ))}
         </div>
     );

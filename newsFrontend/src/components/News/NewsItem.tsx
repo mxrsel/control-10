@@ -25,7 +25,7 @@ const NewsItem: React.FC<Props> = ({id, newsName, newsImage, datetime, onDelete}
                 <div className='card-text text-secondary'>
                     {datetime}
                 </div>
-                <NavLink to='/fullNews'>Read Full Post...</NavLink>
+                <NavLink to={`/fullNews/${id}`}>Read Full Post...</NavLink>
 
                 <button className='btn btn-dark' onClick={() => onDelete(id)}>Delete</button>
             </div>

@@ -27,7 +27,7 @@ export const createNews = createAsyncThunk<void, NewsMutation>(
     }
 )
 
-export const getNewsById = createAsyncThunk<News, void>(
+export const getNewsById = createAsyncThunk<News, string>(
     'news/getNewsById',
     async(id) => {
         const response =  await axiosApi.get<News>(`/news/${id}`);
